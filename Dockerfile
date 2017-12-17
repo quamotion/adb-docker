@@ -9,7 +9,7 @@ RUN apt-get update \
 WORKDIR /src
 
 RUN wget https://github.com/libusb/libusb/archive/v1.0.21.tar.gz -O libusb-1.0.21.tar.gz \
-&& tar xvf libusb-1.0.21.tar.gz \
+&& tar xvf libusb-1.0.21.tar.gz
 
 WORKDIR /src/libusb-1.0.21
 RUN ./autogen.sh enable_udev=no --prefix=/usr \
