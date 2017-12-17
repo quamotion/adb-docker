@@ -10,7 +10,7 @@ WORKDIR /src
 
 RUN wget https://github.com/libusb/libusb/archive/v1.0.21.tar.gz -O libusb-1.0.21.tar.gz \
 && tar xvf libusb-1.0.21.tar.gz \
-RUN wget https://www.nuget.org/api/v2/package/runtime.linux.adk-platform-tools/26.0.1 -O runtime.linux.adk-platform-tools-26.0.1.nupkg \
+&& wget https://www.nuget.org/api/v2/package/runtime.linux.adk-platform-tools/26.0.1 -O runtime.linux.adk-platform-tools-26.0.1.nupkg \
 && unzip runtime.linux.adk-platform-tools-26.0.1.nupkg
 
 WORKDIR /src/libusb-1.0.21
