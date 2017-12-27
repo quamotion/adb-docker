@@ -11,7 +11,8 @@ WORKDIR /src
 RUN wget https://github.com/libusb/libusb/archive/v1.0.21.tar.gz -O libusb-1.0.21.tar.gz \
 && tar xvf libusb-1.0.21.tar.gz \
 && wget https://www.nuget.org/api/v2/package/runtime.linux.adk-platform-tools/26.0.1 -O runtime.linux.adk-platform-tools-26.0.1.nupkg \
-&& unzip runtime.linux.adk-platform-tools-26.0.1.nupkg
+&& unzip runtime.linux.adk-platform-tools-26.0.1.nupkg \
+&& chmod +x /src/runtimes/linux/native/adb
 
 WORKDIR /src/libusb-1.0.21
 RUN ./autogen.sh enable_udev=no --prefix=/usr \
