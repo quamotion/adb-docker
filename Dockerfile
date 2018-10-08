@@ -1,5 +1,8 @@
 FROM ubuntu:xenial
 
+ARG LIBUSB_VERSION=v1.0.22
+ARG ADK_PLATFORM_TOOLS_VERSION=26.0.1
+
 RUN apt-get update \
 && apt-get install -y git wget unzip \
 && apt-get install -y autoconf autotools-dev gcc g++ libssl-dev libtool make pkg-config \
@@ -8,13 +11,13 @@ RUN apt-get update \
 
 WORKDIR /src
 
-RUN wget https://github.com/libusb/libusb/archive/v1.0.21.tar.gz -O libusb-1.0.21.tar.gz \
-&& tar xvf libusb-1.0.21.tar.gz \
-&& wget https://www.nuget.org/api/v2/package/runtime.linux.adk-platform-tools/26.0.1 -O runtime.linux.adk-platform-tools-26.0.1.nupkg \
-&& unzip runtime.linux.adk-platform-tools-26.0.1.nupkg \
+RUN wget https://github.com/libusb/libusb/archive/$LIBUSB_VERSION.tar.gz -O libusb-$LIBUSB_VERSION.tar.gz \
+&& tar xvf libusb-$LIBUSB_VERSION.tar.gz \
+&& wget https://www.nuget.org/api/v2/package/runtime.linux.adk-platform-tools/$ADK_PLATFORM_TOOLS_VERSION -O runtime.linux.adk-platform-tools-$ADK_PLATFORM_TOOLS_VERSION.nupkg \
+&& unzip runtime.linux.adk-platform-tools-$ADK_PLATFORM_TOOLS_VERSION.nupkg \
 && chmod +x /src/runtimes/linux/native/adb
 
-WORKDIR /src/libusb-1.0.21
+WORKDIR /src/libusb-$LIBUSB_VERSION
 RUN ./autogen.sh enable_udev=no --prefix=/usr \
 && make \
 && make install \
