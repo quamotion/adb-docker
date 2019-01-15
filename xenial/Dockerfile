@@ -1,6 +1,6 @@
 FROM ubuntu:xenial
 
-ARG LIBUSB_VERSION=v1.0.22
+ARG LIBUSB_VERSION=1.0.22
 ARG ADK_PLATFORM_TOOLS_VERSION=26.0.1
 
 RUN apt-get update \
@@ -11,8 +11,8 @@ RUN apt-get update \
 
 WORKDIR /src
 
-RUN wget https://github.com/libusb/libusb/archive/$LIBUSB_VERSION.tar.gz -O libusb-$LIBUSB_VERSION.tar.gz \
-&& tar xvf libusb-$LIBUSB_VERSION.tar.gz \
+RUN wget https://github.com/libusb/libusb/archive/v$LIBUSB_VERSION.tar.gz -O libusb-v$LIBUSB_VERSION.tar.gz \
+&& tar xvf libusb-v$LIBUSB_VERSION.tar.gz \
 && wget https://www.nuget.org/api/v2/package/runtime.linux.adk-platform-tools/$ADK_PLATFORM_TOOLS_VERSION -O runtime.linux.adk-platform-tools-$ADK_PLATFORM_TOOLS_VERSION.nupkg \
 && unzip runtime.linux.adk-platform-tools-$ADK_PLATFORM_TOOLS_VERSION.nupkg \
 && chmod +x /src/runtimes/linux/native/adb
