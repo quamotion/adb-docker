@@ -21,7 +21,7 @@ script:
   - echo Packaging adb from platform-tools version $ADK_PLATFORM_TOOLS_VERSION for $DISTRIBUTION
   - docker --version
   - docker run --rm --privileged multiarch/qemu-user-static:register
-  - docker build --build-arg LIBUSB_VERSION=$LIBUSB_VERSION ADK_PLATFORM_VERSION=$ADK_PLATFORM_VERSION -t quamotion/adb:$ADK_PLATFORM_TOOLS_VERSION-$DISTRIBUTION $DISTRIBUTION
+  - docker build --build-arg LIBUSB_VERSION=$LIBUSB_VERSION --build-arg ADK_PLATFORM_VERSION=$ADK_PLATFORM_VERSION -t quamotion/adb:$ADK_PLATFORM_TOOLS_VERSION-$DISTRIBUTION $DISTRIBUTION
 
 after_success:
   - docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
